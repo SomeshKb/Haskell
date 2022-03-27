@@ -50,3 +50,25 @@ module CSVParser where
         nfields = genericLength fields
         count = countFieldsInEachRecord csv
         lineNoCountPairs = zip [1..] count
+
+    
+    printRowInCSV :: [Record] -> Int -> IO()
+    printRowInCSV csv num = do
+        let record = csv !! num
+        if num < (length csv)
+            then do
+              print record
+              printRowInCSV csv (num + 1)
+        else print ("done")
+
+    extractHeader :: [Record] -> Record
+    extractHeader csv = do
+        head csv
+    
+    extractBody :: [Record] -> [Record] 
+    extractBody csv = do
+        tail csv
+    
+
+    
+
